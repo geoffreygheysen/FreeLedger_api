@@ -1,7 +1,9 @@
-from django.urls import path
 from django.conf import settings
+from django.urls import path, include
 
-urlpatterns = []
+urlpatterns = [
+    path('api/auth/', include('apps.auth_accounts.urls')),
+]
 
 if settings.DEBUG:
     from drf_spectacular.views import (
@@ -11,7 +13,24 @@ if settings.DEBUG:
     )
 
     urlpatterns += [
-        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-        path('api/docs/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-        path('api/docs/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+        # Schéma OpenAPI brut
+        path(
+            'api/schema/',
+            SpectacularAPIView.as_view(),
+            name='schema'
+        ),
+
+        # UI Swagger interactive
+        path(
+            'api/docs/swagger/',
+            SpectacularSwaggerView.as_view(url_name='schema'),
+            name='swagger-ui'
+        ),
+
+        # UI Redoc interactive
+        path(
+            'api/docs/redoc/',
+            SpectacularRedocView.as_view(url_name='schema'),
+            name='redoc'
+        ),
     ]

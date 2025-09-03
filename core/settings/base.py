@@ -24,8 +24,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'core'
+    'core',
+    'apps.auth_accounts',
+    'apps.user_profiles',
 ]
+
+AUTH_USER_MODEL = 'auth_accounts.Auth'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
