@@ -1,4 +1,5 @@
 from apps.auth_accounts.models import Auth
+from django.utils import timezone
 
 
 class AuthService:
@@ -18,3 +19,11 @@ class AuthService:
 
         # Création de l’utilisateur en transmettant tous les extra_fields
         return user
+
+    @staticmethod
+    def update_last_login(user):
+        """
+        Met à jour le champ last_login de l’utilisateur.
+        """
+        user.last_login = timezone.now()
+        user.save(update_fields=["last_login"])
