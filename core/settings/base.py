@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'core',
+    'corsheaders',
     'apps.auth_accounts',
     'apps.user_profiles',
 ]
@@ -41,7 +42,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
